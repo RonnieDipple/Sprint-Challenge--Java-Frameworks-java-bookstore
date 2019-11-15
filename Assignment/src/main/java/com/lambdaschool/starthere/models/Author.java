@@ -1,6 +1,5 @@
 package com.lambdaschool.starthere.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lambdaschool.starthere.logging.Loggable;
 
 import javax.persistence.*;
@@ -10,7 +9,7 @@ import java.util.List;
 @Loggable
 @Entity
 @Table(name = "authors")
-public class AuthorModel {
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,11 +20,11 @@ public class AuthorModel {
 
     @ManyToMany(mappedBy = "authors",
             cascade = CascadeType.ALL)
-    private List<BookModel> authorBooks = new ArrayList<>();
+    private List<Book> authorBooks = new ArrayList<>();
 
-    public AuthorModel(){}
+    public Author(){}
 
-    public AuthorModel(String lastname, String firstname, List<BookModel> authorBooks) {
+    public Author(String lastname, String firstname, List<Book> authorBooks) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.authorBooks = authorBooks;
@@ -55,11 +54,11 @@ public class AuthorModel {
         this.firstname = firstname;
     }
 
-    public List<BookModel> getAuthorBooks() {
+    public List<Book> getAuthorBooks() {
         return authorBooks;
     }
 
-    public void setAuthorBooks(List<BookModel> authorBooks) {
+    public void setAuthorBooks(List<Book> authorBooks) {
         this.authorBooks = authorBooks;
     }
 }

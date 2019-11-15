@@ -10,7 +10,7 @@ import java.util.List;
 @Loggable
 @Entity
 @Table(name = "sections")
-public class SectionModel {
+public class Section {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,13 +24,13 @@ public class SectionModel {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JsonIgnoreProperties("section")
-    private List<BookModel> sectionBooks = new ArrayList<>();
+    private List<Book> menus = new ArrayList<>();
 
-    public SectionModel(){}
+    public Section(){}
 
-    public SectionModel(String sectionname, List<BookModel> sectionBooks) {
+    public Section(String sectionname, List<Book> menus) {
         this.sectionname = sectionname;
-        this.sectionBooks = sectionBooks;
+        this.menus = menus;
     }
 
     public long getSectionid() {
@@ -49,11 +49,11 @@ public class SectionModel {
         this.sectionname = sectionname;
     }
 
-    public List<BookModel> getSectionBooks() {
-        return sectionBooks;
+    public List<Book> getMenus() {
+        return menus;
     }
 
-    public void setSectionBooks(List<BookModel> sectionBooks) {
-        this.sectionBooks = sectionBooks;
+    public void setMenus(List<Book> menus) {
+        this.menus = menus;
     }
 }

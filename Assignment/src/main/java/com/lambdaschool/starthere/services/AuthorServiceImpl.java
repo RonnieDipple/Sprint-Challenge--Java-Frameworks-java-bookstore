@@ -2,17 +2,10 @@ package com.lambdaschool.starthere.services;
 
 
 import com.lambdaschool.starthere.logging.Loggable;
-import com.lambdaschool.starthere.models.AuthorModel;
-import com.lambdaschool.starthere.models.Role;
+import com.lambdaschool.starthere.models.Author;
 import com.lambdaschool.starthere.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +18,9 @@ public class AuthorServiceImpl implements AuthorService {
 
 
     @Override
-    public List<AuthorModel> findAll()
+    public List<Author> findAll()
     {
-        List<AuthorModel> list = new ArrayList<>();
+        List<Author> list = new ArrayList<>();
         authorRepository.findAll()
                 .iterator().forEachRemaining(list::add);
         return list;

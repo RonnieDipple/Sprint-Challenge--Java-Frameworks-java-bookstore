@@ -2,9 +2,7 @@ package com.lambdaschool.starthere.controllers;
 
 
 import com.lambdaschool.starthere.logging.Loggable;
-import com.lambdaschool.starthere.models.AuthorModel;
-import com.lambdaschool.starthere.models.BookModel;
-import com.lambdaschool.starthere.services.AuthorService;
+import com.lambdaschool.starthere.models.Book;
 import com.lambdaschool.starthere.services.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +34,7 @@ public class BookController {
         logger.trace(request.getMethod()
                 .toUpperCase() + " " + request.getRequestURI() + " accessed");
 
-        List<BookModel> allBooks = bookService.findAll();
+        List<Book> allBooks = bookService.findAll();
         return new ResponseEntity<>(allBooks,
                 HttpStatus.OK);
     }

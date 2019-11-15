@@ -2,8 +2,7 @@ package com.lambdaschool.starthere.controllers;
 
 
 import com.lambdaschool.starthere.logging.Loggable;
-import com.lambdaschool.starthere.models.AuthorModel;
-import com.lambdaschool.starthere.models.Role;
+import com.lambdaschool.starthere.models.Author;
 import com.lambdaschool.starthere.services.AuthorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +35,7 @@ public class AuthorController {
         logger.trace(request.getMethod()
                 .toUpperCase() + " " + request.getRequestURI() + " accessed");
 
-        List<AuthorModel> allAuthors = authorService.findAll();
+        List<Author> allAuthors = authorService.findAll();
         return new ResponseEntity<>(allAuthors,
                 HttpStatus.OK);
     }

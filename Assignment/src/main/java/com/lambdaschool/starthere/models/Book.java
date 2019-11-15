@@ -10,7 +10,7 @@ import java.util.List;
 @Loggable
 @Entity
 @Table(name = "books")
-public class BookModel {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long bookid;
@@ -30,22 +30,23 @@ public class BookModel {
             inverseJoinColumns = @JoinColumn(name = "authorid")
     )
     @JsonIgnoreProperties("books")
-    List<AuthorModel> authors = new ArrayList<>();
+    List<Author> authors = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "bookid",
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sectionid",
             nullable = false)
-    @JsonIgnoreProperties("ISBN")
-    private SectionModel sectionModel;
+    @JsonIgnoreProperties({"books"})
+    private Section section;
 
-    public BookModel(){}
+    public Book(){}
 
-    public BookModel(String booktitle, String ISBN, int copy, List<AuthorModel> authors, SectionModel sectionModel) {
+    public Book(String booktitle, String ISBN, int copy, List<Author> authors, Section section) {
         this.booktitle = booktitle;
         this.ISBN = ISBN;
         this.copy = copy;
         this.authors = authors;
-        this.sectionModel = sectionModel;
+        this.section = section;
     }
 
     public long getBookid() {
@@ -80,19 +81,19 @@ public class BookModel {
         this.copy = copy;
     }
 
-    public List<AuthorModel> getAuthors() {
+    public List<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<AuthorModel> authors) {
+    public void setAuthors(List<Author> authors) {
         this.authors = authors;
     }
 
-    public SectionModel getSectionModel() {
-        return sectionModel;
+    public Section getSection() {
+        return section;
     }
 
-    public void setSectionModel(SectionModel sectionModel) {
-        this.sectionModel = sectionModel;
+    public void setSection(Section section) {
+        this.section = section;
     }
 }
