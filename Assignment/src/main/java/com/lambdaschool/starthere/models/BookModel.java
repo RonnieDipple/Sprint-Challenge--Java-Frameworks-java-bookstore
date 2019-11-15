@@ -24,10 +24,13 @@ public class BookModel {
 
     private int copy;
 
-    @ManyToMany(mappedBy = "books",
-            cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(name = "bookauthor",
+            joinColumns = @JoinColumn(name = "bookid"),
+            inverseJoinColumns = @JoinColumn(name = "authorid")
+    )
     @JsonIgnoreProperties("books")
-    private List<AuthorModel> authors = new ArrayList<>();
+    List<AuthorModel> authors = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "bookid",

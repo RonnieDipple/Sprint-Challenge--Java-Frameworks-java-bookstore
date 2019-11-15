@@ -21,7 +21,6 @@ public class AuthorModel {
 
     @ManyToMany(mappedBy = "authors",
             cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("authors")
     private List<BookModel> authorBooks = new ArrayList<>();
 
     public AuthorModel(){}
